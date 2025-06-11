@@ -1,17 +1,19 @@
-import { Request, Response, Router } from "express";
-import { LogSistemaService } from "../servicies/LogSistema.service";
+import { Request, Response } from 'express';
+import { LogSistemaService } from '../servicies/LogSistema.service';
 
-const router = Router();
 const logService = new LogSistemaService();
 
-router.get("/", async (req: Request, res: Response) => {
-  const logs = await logService.getAll({
-    ciudad: req.query.ciudad as string,
-    resultadoConsulta: req.query.resultado as string,
-    fuenteNombre: req.query.fuente as string,
-  });
+export const getLogs = async (req: Request, res: Response) => {
+  try {
+    const logs = await logService.getAll({
+      ciudad: req.query.ciudad as string,
+      resultadoConsulta: req.query.resultado as string,
+      fuenteNombre: req.query.fuente as string,
+    });
 
-  res.json(logs);
-});
-
-export default router;
+    res.json(logs);
+  } catch (error) {
+    console.error('Error al obtener logs:', error);
+    res.status(500).json({ error: 'Error del servidor' });
+  }
+};

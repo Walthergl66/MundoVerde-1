@@ -51,3 +51,16 @@ DB_DATABASE=postgres
 PORT=3000
 OPENWEATHER_API_KEY=fbf0bedef7d799633876a3253f1e575a
 OPENWEATHER_BASE_URL=https://api.openweathermap.org/data/2.5/weather
+
+
+
+
+# Que intale
+# instalacion de JWT
+npm install jsonwebtoken
+
+npm install --save-dev @types/jsonwebtoken
+
+# instalacion de jest para los test
+npm install --save-dev jest ts-jest @types/jest supertest @types/supertest
+

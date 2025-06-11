@@ -1,31 +1,31 @@
 import express from 'express';
 import { AppDataSource } from './config/data-source';
 import * as dotenv from 'dotenv';
-
-// Importación de rutas
-import consultaClimaRoutes from './routes/ConsultaClima.route';
-import { getAllFuentes } from './controllers/FuenteClimatica.controller';
-import logRouter from './controllers/LogSistema.controller';
-
-// Cargar variables de entorno
 dotenv.config();
 
-// Inicialización de Express
+import authRoutes from './routes/auth.route';
+import consultaClimaRoutes from './routes/ConsultaClima.route';
+import fuenteRoutes from './routes/FuenteClimatica.route';
+import logRoutes from './routes/LogSistema.routes';
+import { verificarToken } from './middlewares/auth.middleware';
+
 const app = express();
 app.use(express.json());
-
-// Middleware base (puedes agregar CORS o logger aquí si lo deseas)
 app.use(express.urlencoded({ extended: true }));
 
-// Rutas
-app.use('/api/consulta-clima', consultaClimaRoutes);         // GET /api/consulta-clima?ciudad=Quito
-app.use('/api/fuentes', getAllFuentes);                      // GET /api/fuentes
-app.use('/api/logs', logRouter);                             // GET /api/logs?ciudad=...&resultado=...&fuente=...
+// Ruta pública (NO protegida con token)
+app.use('/api/auth', authRoutes);
 
-// Puerto
+// Middleware que protege TODO lo que sigue
+app.use(verificarToken);
+
+// Rutas protegidas
+app.use('/api/consulta-clima', consultaClimaRoutes);  
+app.use('/api/fuentes', fuenteRoutes);                
+app.use('/api/logs', logRoutes);                      
+
 const PORT = process.env.PORT || 3000;
 
-// Inicialización de la base de datos y servidor
 AppDataSource.initialize()
   .then(() => {
     console.log('📡 Data Source initialized');
