@@ -1,7 +1,8 @@
+// src/controllers/LogSistema.controller.ts
 import { Request, Response } from 'express';
-import { LogSistemaService } from '../servicies/LogSistema.service';
+import { LogSistemaService } from '../services/LogSistema.service';
 
-const logService = new LogSistemaService();
+export const logService = new LogSistemaService();  // <-- exportado
 
 export const getLogs = async (req: Request, res: Response) => {
   try {

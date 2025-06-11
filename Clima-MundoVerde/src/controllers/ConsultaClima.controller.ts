@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ConsultaClimaService } from '../servicies/ConsultaClima.service';
+import { ConsultaClimaService } from '../services/ConsultaClima.service';
 
 const consultaClimaService = new ConsultaClimaService();
 

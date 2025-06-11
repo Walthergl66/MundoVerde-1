@@ -1,6 +1,6 @@
 // controllers/fuente.controller.ts
 import { Request, Response } from "express";
-import { FuenteClimaticaService } from "../servicies/FuenteClimatica.service";
+import { FuenteClimaticaService } from "../services/FuenteClimatica.service";
 
 const fuenteService = new FuenteClimaticaService();
 

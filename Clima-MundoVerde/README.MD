@@ -64,3 +64,10 @@ npm install --save-dev @types/jsonwebtoken
 # instalacion de jest para los test
 npm install --save-dev jest ts-jest @types/jest supertest @types/supertest
 
+# incia la configuracion de jest
+npx ts-jest config:init
+
+# instalacion de supertest para simular peticiones HTTP a tu servidor Express para los test de routes.
+
+npm install --save-dev supertest @types/supertest
+

@@ -3,6 +3,6 @@ import { getLogs } from '../controllers/LogSistema.controller';
 
 const router = Router();
 
-router.get('/', getLogs); // GET /api/logs?ciudad=...&resultado=...&fuente=...
+router.get('/', getLogs); 
 
 export default router;
